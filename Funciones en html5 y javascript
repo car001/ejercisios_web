@@ -1,0 +1,198 @@
+ejercisios_web
+==============
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>HTML5 y JavaScript - Ejercicios</title>
+        <style type="text/css">
+            .presentacion{
+                padding: 19px;
+                margin-bottom: 20px;
+                background-color: #f5f5f5;
+                border: 1px solid #e3e3e3;
+                height: 180px;
+                width: 546px;
+                box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+                border-radius: 4px;
+                text-align: left;
+                padding-top: 5px;
+            }
+            hr{
+                width: 546px;
+            }
+            body{
+                background: silver;
+            }
+            h1{
+                background: #f5f5f5;
+            }
+        </style>
+    </head>
+    
+    <body>
+    <div align="center"> 
+        <h1>NUMEROS PRIMOS, HEXADECIMAL, CEDULA</h1>
+        <div class="presentacion">
+            <h2>Numeros primos</h2>
+            <input id="primo" onkeyup="ValidarPrimo(this.value)" title="Validacion de numeros primos" placeholder="ingrese un numero" />
+            <p><b>Descripcion:</b> Este cuadro solo permite el ingreso de numeros primos</p>
+            <div id="salidaPrimo"></div>
+        </div>
+        <hr />
+        
+        <div class="presentacion">
+            <h2>Invertir texto</h2>
+            <input id="cuadro" onkeyup="invertirTexto(this)" title="invertir un texto" placeholder="ingrese un texto" />
+            <p><b>Descripcion:</b> Este cuadro permite el ingreso de un texto y lo invierte</p>
+            <div id="salida"></div>
+        </div>
+        <hr />
+        <div class="presentacion">
+            <h2>invertir las palabras</h2>
+            <input type="text" id="cuadrotext"  title="invertir un texto" placeholder="ingrese un texto" />
+            <input type="text" id="cuadrotext2"  title="invertir un texto" placeholder="ingrese un texto" />
+            <input type="button" onclick="textoRestante('cuadrotext','cuadrotext2')" value="Tener" />
+            <p><b>Descripcion:</b> Este cuadro</p>
+            <div id="salidaTexto">hola</div>
+        </div>
+        <hr />
+        
+        <div class="presentacion">
+            <h2>Sumar Binario</h2>
+            <input id="binario" onkeyup="esBinario(this)" title="escribir binario" value="0" />
+            <input id="binario2" onkeyup="esBinario(this)" title="escribir binario" value="0" />
+            <p><b>Descripcion:</b> Este cuadro permite el ingreso unicamente de numeros binarios, los suma y los muestra eb binario y decimal</p>
+            <div id="salidaBinaria" ></div>
+        </div>
+        <hr />
+        
+        <div class="presentacion">
+            <h2>Transformar a hexadecimal</h2>
+            hexadecimal<br />
+            <input id="hexa" onkeyup="hexadecimal_a_Decimal(this.value)"/>
+            <br />decimal<br />
+            <input id="decimal" onkeyup="decimal_a_Hexadecimal(this.value)" />
+         </div>
+        
+        
+        
+       </div> 
+    </body>    
+</html>
+<script>
+function textoRestante(id1,id2){
+    var texto1=document.getElementById(id1).value;
+    var texto2=document.getElementById(id2).value;
+    var t1="";
+    var t2="";
+    var total="";
+    alert("alert");
+    for(i=0;i<texto1.length;i++){
+        alert("alert");
+        t1=texto1.substring(i,i+1);
+        for(j=0;j<=texto2.length;j++){
+            t2=texto2.substring(j,j+1);
+            if(t2==t1){
+               total+=t1;
+              
+            }
+        }
+    }
+    var t1="";
+    var otxet="";
+    for(i=0; i<total.length; i++){
+        caracter=total.substring(i,i+1);
+        otxet=caracter+otxet;
+    }
+    document.getElementById("salidaTexto").innerHTML=total+ " al revez de : "+otxet;
+    
+}
+
+function SumarBinario(dato1, dato2){
+    if(dato1==NaN ){
+        dato1=0;
+    }
+    if(dato2==NaN ){
+        dato2=0;
+    }
+    dato1=parseInt(dato1,2).toString(10);
+    dato2=parseInt(dato2,2).toString(10);
+    dato1=parseInt(dato1);
+    dato2=parseInt(dato2);
+    resultadodecimal=dato1+dato2;
+    resultadoBinario=parseInt(resultadodecimal,10).toString(2);
+    document.getElementById("salidaBinaria").innerHTML="binario: "+resultadoBinario+" Decimal: "+resultadodecimal;
+}
+function ValidarPrimo(num){
+    var estado=false;
+      for(i=2;i<=num;i++){
+            if((num%i==0) && num!=i){
+                estado=true;
+                break;
+            }else{
+                estado=false;
+            }
+        }
+    if(estado){
+        document.getElementById("salidaPrimo").innerHTML="el numero no es primo";
+    }else{
+         document.getElementById("salidaPrimo").innerHTML="el numero es primo";
+    }
+}
+
+function hexadecimal_a_Decimal(entrada){
+    var valor="";
+    var cadenaNumerica="";
+    for(i=0;i<=entrada.length;i++){
+        valor=entrada.substring(i,i+1)
+         if(valor=="1" || valor=="2" || valor=="3"|| valor=="4"|| valor=="5"|| valor=="6"
+            || valor=="7"|| valor=="8"|| valor=="9"|| valor=="0"|| valor=="A"|| valor=="B"
+            || valor=="C"|| valor=="D"|| valor=="E"|| valor=="F"|| valor=="a"|| valor=="b"
+            || valor=="c"|| valor=="d"|| valor=="e"|| valor=="f"){
+               cadenaNumerica+=valor; 
+               document.getElementById("hexa").value=cadenaNumerica;
+        }    
+        var saber = parseInt(cadenaNumerica,16).toString(10);
+        document.getElementById("decimal").value=saber;
+    }
+    
+    
+}
+function decimal_a_Hexadecimal(valor){
+    var saber = parseInt(valor,10).toString(16);
+    document.getElementById("hexa").value=saber;
+}
+
+function invertirTexto(cuadro){
+    var texto=cuadro.value;
+    var caracter="";
+    var otxet="";
+    for(i=0; i<texto.length; i++){
+        caracter=texto.substring(i,i+1);
+        otxet=caracter+otxet;
+    }
+    document.getElementById("salida").innerHTML=otxet;
+}
+
+function esBinario(cuadro){
+    var bin=cuadro.value;
+    var bit="";
+    var cadenaBinaria="";
+    if(bin.length>=0){
+        document.getElementById(cuadro.id).value="0";
+    }
+    for(i=0; i<bin.length; i++){
+        bit=bin.substring(i,i+1);
+        cadenaBinaria+=bit;
+        if(bit==1 || bit==0){
+            document.getElementById(cuadro.id).value=cadenaBinaria;
+        }
+    }
+    SumarBinario(document.getElementById("binario").value,document.getElementById("binario2").value);
+}
+</script>
